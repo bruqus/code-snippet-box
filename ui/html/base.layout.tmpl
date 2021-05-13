@@ -1,0 +1,36 @@
+{{ define "base" }}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ template "title" .}}</title>
+    <link rel='stylesheet' href='/static/css/main.css'>
+    {{ block "styles" .}}{{ end }}
+    <link rel='shortcut icon' href='/static/img/favicon.ico' type='image/x-icon'>
+    <script defer src="/static/js/main.js"></script>
+  </head>
+  <body>
+    <header class="header">
+      <a href="/" class="header__link">
+        <h1 class="header__title">Code Snippet Box</h1>
+      </a>
+      <nav class="header__nav nav">
+        <ul class="nav__items">
+          <li class="nav__item">
+            <a href="/" class="nav__link">Home</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="container">
+      <section class="container__content">
+        {{ template "main" .}}
+      </section>
+    </main>
+    {{ template "footer" .}}
+  </body>
+</html>
+
+{{ end }}
