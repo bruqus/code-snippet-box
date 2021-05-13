@@ -1,0 +1,126 @@
+:root {
+  --footer-height: 100px;
+  --header-height: 200px;
+  --primary-dark: #34495e;
+  --primary-light: #f1f3f6;
+  --base-text-color: #6a6c6f;
+  --blocks-color: #f7f9fa;
+  --border-color: #e4e5e7;
+  --active-color: #60ce60;
+  --colors: #34495e, #34495e 25%, #9b59b6 25%, #9b59b6 35%, #3498db 35%,
+    #3498db 45%, #62cb31 45%, #62cb31 55%, #ffb606 55%, #ffb606 65%, #e67e22 65%,
+    #e67e22 75%, #e74c3c 85%, #e74c3c 85%, #c0392b 85%, #c0392b 100%;
+  --base-padding: 20px;
+  --block-width: 1000px;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  font-size: 18px;
+  font-family: "Ubuntu Mono", monospace;
+}
+
+body {
+  line-height: 1.5;
+  background-color: #f1f3f6;
+  color: #34495e;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  height: calc(100vh - var(--footer-height) - var(--header-height));
+}
+
+.container__content {
+  width: 100%;
+  max-width: var(--block-width);
+  margin: 40px 0;
+}
+
+.header {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: center;
+  height: var(--header-height);
+  border-bottom: 1px solid var(--border-color);
+  background-image: -webkit-linear-gradient(left, var(--colors));
+  background-image: -moz-linear-gradient(left, var(--colors));
+  background-image: -ms-linear-gradient(left, var(--colors));
+  background-image: linear-gradient(to right, var(--colors));
+  background-size: 100% 6px;
+  background-repeat: no-repeat;
+}
+
+.header__link {
+  text-decoration: none;
+}
+
+.header__title {
+  margin-top: 25px;
+  font-size: 60px;
+  color: var(--primary-dark);
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  padding: var(--base-padding) 0;
+  width: 100%;
+  background-color: var(--blocks-color);
+}
+
+.nav__items {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  max-width: var(--block-width);
+  list-style: none;
+  font-size: 20px;
+}
+
+.nav__item.active {
+  position: relative;
+  color: var(--active-color);
+}
+
+.nav__item.active::after {
+  position: absolute;
+  bottom: -32px;
+  left: 50%;
+  width: 25px;
+  height: 25px;
+  border-right: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  transform: translateX(-50%) rotate(45deg);
+  background-color: var(--blocks-color);
+  content: "";
+}
+
+.nav__link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: var(--footer-height);
+  border-top: 1px solid var(--border-color);
+  background-color: var(--blocks-color);
+}
