@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bruqus/snippetbox/pkg/models/mysql"
 	"database/sql"
 	"flag"
 	"log"
@@ -19,6 +20,7 @@ type Config struct {
 type application struct {
 	errorLog *log.Logger
 	infoLog *log.Logger
+	snippets *mysql.SnippetModel
 }
 
 func main() {
@@ -40,6 +42,7 @@ func main() {
 	app := &application{
 		infoLog: infoLog,
 		errorLog: errorLog,
+		snippets: &mysql.SnippetModel{DB: db},
 	}
 
 	srv := &http.Server{
