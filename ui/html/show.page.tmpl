@@ -1,0 +1,25 @@
+{{ template "base" .}}
+
+{{ define "title" }}Code-Snippet-Box | Snippet #{{.Snippet.ID}}{{ end }}
+
+{{ define "main" }}
+  {{ with .Snippet }}
+  <div class="snippet">
+    <div class="snippet__metadata">
+      <h3 class="snippet__title">
+        <span class="snippet__title--align-left">
+          {{.Title}}
+        </span>
+        <span class="snippet__title--align-right">
+          #{{.ID}}
+        </span>
+      </h3>
+    </div>
+    <pre class="snippet__main"><code class="snippet__content">{{.Content}}</code></pre>
+    <div class="snippet__metadata">
+      <time class="snippet__time">Created: {{.Created}}</time>
+      <time class="snippet__time">Expires: {{.Expires}}</time>
+    </div>
+  </div>
+  {{ end }}
+{{ end }}
