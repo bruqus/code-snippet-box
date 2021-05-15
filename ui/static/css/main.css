@@ -124,3 +124,33 @@ body {
   border-top: 1px solid var(--border-color);
   background-color: var(--blocks-color);
 }
+
+.snippet {
+  color: var(--primary-dark);
+  /* background-color: red; */
+}
+
+.snippet__metadata {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--base-padding);
+  border: 1px solid var(--border-color);
+  background-color: var(--blocks-color);
+}
+
+.snippet__title {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.snippet__main {
+  padding: var(--base-padding);
+  border-right: 1px solid var(--border-color);
+  border-left: 1px solid var(--border-color);
+  background-color: #fff;
+}
+
+.snippet__time {
+  color: var(--base-text-color);
+}

@@ -1,6 +1,8 @@
 package main
 
 import (
+	"bruqus/snippetbox/pkg/models"
+	"errors"
 	"fmt"
 	"html/template"
 	"net/http"
@@ -14,7 +16,7 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 	}
 
 	files := []string{
-		"./ui/html/home.page.tmpl",
+		"./ui/html/show.page.tmpl",
 		"./ui/html/base.layout.tmpl",
 		"./ui/html/footer.partial.tmpl",
 	}
