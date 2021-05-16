@@ -12,6 +12,7 @@
     #e67e22 75%, #e74c3c 85%, #e74c3c 85%, #c0392b 85%, #c0392b 100%;
   --base-padding: 20px;
   --block-width: 1000px;
+  --border: 1px solid var(--border-color);
 }
 
 html {
@@ -51,13 +52,17 @@ body {
   margin: 40px 0;
 }
 
+.container__subtitle {
+  margin-bottom: 20px;
+}
+
 .header {
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
   align-items: center;
   height: var(--header-height);
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: var(--border);
   background-image: -webkit-linear-gradient(left, var(--colors));
   background-image: -moz-linear-gradient(left, var(--colors));
   background-image: -ms-linear-gradient(left, var(--colors));
@@ -104,8 +109,8 @@ body {
   left: 50%;
   width: 25px;
   height: 25px;
-  border-right: 1px solid var(--border-color);
-  border-bottom: 1px solid var(--border-color);
+  border-right: var(--border);
+  border-bottom: var(--border);
   transform: translateX(-50%) rotate(45deg);
   background-color: var(--blocks-color);
   content: "";
@@ -121,7 +126,7 @@ body {
   justify-content: center;
   align-items: center;
   height: var(--footer-height);
-  border-top: 1px solid var(--border-color);
+  border-top: var(--border);
   background-color: var(--blocks-color);
 }
 
@@ -134,7 +139,7 @@ body {
   display: flex;
   justify-content: space-between;
   padding: var(--base-padding);
-  border: 1px solid var(--border-color);
+  border: var(--border);
   background-color: var(--blocks-color);
 }
 
@@ -146,11 +151,38 @@ body {
 
 .snippet__main {
   padding: var(--base-padding);
-  border-right: 1px solid var(--border-color);
-  border-left: 1px solid var(--border-color);
+  border-right: var(--border);
+  border-left: var(--border);
   background-color: #fff;
 }
 
 .snippet__time {
   color: var(--base-text-color);
+}
+
+/* main-table */
+.main-table {
+  width: 100%;
+  border: var(--border);
+  border-collapse: collapse;
+  background-color: #fff;
+}
+
+.main-table__head {
+  padding: var(--base-padding);
+  background-color: var(--blocks-color);
+  text-align: left;
+}
+
+.main-table__cell {
+  padding: calc(var(--base-padding) / 2) var(--base-padding);
+}
+
+.main-table__head .main-table__row {
+  border-bottom: var(--border);
+}
+
+.main-table__link {
+  color: var(--active-color);
+  text-decoration: none;
 }
