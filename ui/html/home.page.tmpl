@@ -19,7 +19,7 @@
             <td class="main-table__cell">
               <a href="/snippet?id={{ .ID }}" class="main-table__link">{{ .Title }}</a>
             </td>
-            <td class="main-table__cell">{{ .Created }}</td>
+            <td class="main-table__cell">{{ humanDate .Created }}</td>
             <td class="main-table__cell">#{{ .ID }}</td>
           </tr>
         {{ end }}
