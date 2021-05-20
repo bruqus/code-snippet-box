@@ -3,6 +3,7 @@ package main
 import (
 	"bruqus/snippetbox/pkg/models"
 	"html/template"
+	"net/url"
 	"path/filepath"
 	"time"
 )
@@ -11,6 +12,8 @@ type templateData struct {
 	CurrentYear int
 	Snippet *models.Snippet
 	Snippets []*models.Snippet
+	FormData url.Values
+	FormErrors map[string]string
 }
 
 func humanDate(t time.Time) string {
