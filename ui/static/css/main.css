@@ -43,7 +43,7 @@ body {
 .container {
   display: flex;
   justify-content: center;
-  height: calc(100vh - var(--footer-height) - var(--header-height));
+  min-height: calc(100vh - var(--footer-height) - var(--header-height));
 }
 
 .container__content {
@@ -185,4 +185,61 @@ body {
 .main-table__link {
   color: var(--active-color);
   text-decoration: none;
+}
+
+/* create snippet form */
+.create-form__group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.create-form__group--direction-row {
+  flex-direction: row;
+  align-items: center;
+}
+
+.create-form__radio-items .create-form__label {
+  margin-left: 30px;
+  padding-right: 0;
+}
+
+.create-form__label {
+  padding: calc(var(--base-padding) / 2);
+}
+
+.create-form__textarea,
+.create-form__input {
+  padding: calc(var(--base-padding) / 2);
+  font-size: inherit;
+  color: inherit;
+  border: var(--border);
+  border-radius: 3px;
+}
+
+.create-form__textarea {
+  min-height: 200px;
+  resize: vertical;
+}
+
+.create-form__button {
+  width: fit-content;
+  padding: calc(var(--base-padding) / 2) var(--base-padding);
+  border-radius: 4px;
+  border: none;
+  background-color: var(--active-color);
+  color: white;
+  font-weight: bold;
+  font-size: inherit;
+  cursor: pointer;
+}
+
+.create-form__button:hover {
+  transition: opacity 0.2s ease;
+  opacity: 0.8;
+}
+
+.create-form__error {
+  padding: 5px 10px 0;
+  color: #ff5b5b;
 }
