@@ -2,6 +2,7 @@ package main
 
 import (
 	"bruqus/snippetbox/pkg/models/mysql"
+	"crypto/tls"
 	"database/sql"
 	"flag"
 	"html/template"
@@ -53,6 +54,7 @@ func main() {
 
 	session := sessions.New([]byte(cfg.secret))
 	session.Lifetime = 12 * time.Hour
+	session.Secure = true
 
 	app := &application{
 		infoLog: infoLog,
@@ -62,14 +64,20 @@ func main() {
 		templateCache: templateCache,
 	}
 
+	tlsConfig := &tls.Config{
+		PreferServerCipherSuites: true,
+		CurvePreferences: []tls.CurveID{tls.X25519, tls.CurveP256},
+	}
+
 	srv := &http.Server{
 		Addr: cfg.Addr,
 		ErrorLog: errorLog,
 		Handler: app.routes(),
+		TLSConfig: tlsConfig,
 	}
 
 	infoLog.Printf("Starting Server on %s", cfg.Addr)
-	err = srv.ListenAndServe()
+	err = srv.ListenAndServeTLS("./tls/cert.pem", "./tls/key.pem")
 	errorLog.Fatal(err)
 }
 
