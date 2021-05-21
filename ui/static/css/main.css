@@ -243,3 +243,17 @@ body {
   padding: 5px 10px 0;
   color: #ff5b5b;
 }
+
+/* flash */
+.flash {
+  padding: 10px 20px;
+  border-radius: 4px;
+  background-color: var(--active-color);
+  color: white;
+  font-size: inherit;
+  font-weight: bold;
+}
+
+.container__flash {
+  margin-bottom: 20px;
+}
