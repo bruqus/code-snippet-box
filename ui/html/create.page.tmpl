@@ -4,24 +4,25 @@
 
 {{ define "main" }}
   <form class="create-form" action="/snippet/create" method="POST">
+  {{ with .Form }}
     <div class="create-form__group">
       <label class="create-form__label" for="title">Title:</label>
-      <input type="text" name="title" id="title" class="create-form__input" value={{ .FormData.Get "title" }}>
-      {{ with .FormErrors.title }}
+      <input type="text" name="title" id="title" class="create-form__input" value={{ .Get "title" }}>
+      {{ with .Errors.Get "title" }}
         <div class="create-form__error">{{ . }}</div>
       {{ end }}
     </div>
     <div class="create-form__group">
       <label class="create-form__label" for="content">Content:</label>
-      <textarea type="text" name="content" id="content" class="create-form__textarea">{{ .FormData.Get "content" }}</textarea>
-      {{ with .FormErrors.content }}
+      <textarea type="text" name="content" id="content" class="create-form__textarea">{{ .Get "content" }}</textarea>
+      {{ with .Errors.Get "content" }}
         <div class="create-form__error">{{ . }}</div>
       {{ end }}
     </div>
     <div class="create-form__group create-form__group--direction-row">
       <p class="create-form__label">Delete in:</p>
       <div class="create-form__radio-items">
-        {{ $exp := or (.FormData.Get "expires") "365" }}
+        {{ $exp := or (.Get "expires") "365" }}
         <label class="create-form__label" for="expires-year">One Year</label>
         <input
           type="radio"
@@ -49,12 +50,13 @@
           {{ if (eq $exp "1") }}checked{{ end }}
         >
       </div>
-      {{ with .FormErrors.expires }}
+      {{ with .Errors.Get "expires" }}
         <div class="create-form__error">{{ . }}</div>
       {{ end }}
     </div>
     <div class="create-form__group">
       <button type="submit" class="create-form__button">Publish snippet</button>
     </div>
+  {{ end }}
   </form>
 {{ end }}
