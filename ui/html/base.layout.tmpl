@@ -29,6 +29,9 @@
     </header>
     <main class="container">
       <section class="container__content">
+        {{ with .Flash }}
+          <div class="flash container__flash">{{ . }}</div>
+        {{ end }}
         {{ template "main" .}}
       </section>
     </main>
