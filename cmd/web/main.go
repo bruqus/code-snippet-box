@@ -16,21 +16,22 @@ import (
 )
 
 type contextKey string
+
 const contextKeyIsAuthenticated = contextKey("isAuthenticated")
 
 type Config struct {
-	Addr string
+	Addr      string
 	StaticDir string
-	dsn string
-	secret string
+	dsn       string
+	secret    string
 }
 
 type application struct {
-	errorLog *log.Logger
-	infoLog *log.Logger
-	sessions *sessions.Session
-	snippets *mysql.SnippetModel
-	users *mysql.UserModel
+	errorLog      *log.Logger
+	infoLog       *log.Logger
+	sessions      *sessions.Session
+	snippets      *mysql.SnippetModel
+	users         *mysql.UserModel
 	templateCache map[string]*template.Template
 }
 
@@ -62,26 +63,26 @@ func main() {
 	session.SameSite = http.SameSiteStrictMode
 
 	app := &application{
-		infoLog: infoLog,
-		errorLog: errorLog,
-		sessions: session,
-		snippets: &mysql.SnippetModel{DB: db},
-		users: &mysql.UserModel{DB: db},
+		infoLog:       infoLog,
+		errorLog:      errorLog,
+		sessions:      session,
+		snippets:      &mysql.SnippetModel{DB: db},
+		users:         &mysql.UserModel{DB: db},
 		templateCache: templateCache,
 	}
 
 	tlsConfig := &tls.Config{
 		PreferServerCipherSuites: true,
-		CurvePreferences: []tls.CurveID{tls.X25519, tls.CurveP256},
+		CurvePreferences:         []tls.CurveID{tls.X25519, tls.CurveP256},
 	}
 
 	srv := &http.Server{
-		Addr: cfg.Addr,
-		ErrorLog: errorLog,
-		Handler: app.routes(),
-		TLSConfig: tlsConfig,
-		IdleTimeout: time.Minute,
-		ReadTimeout: 5 * time.Second,
+		Addr:         cfg.Addr,
+		ErrorLog:     errorLog,
+		Handler:      app.routes(),
+		TLSConfig:    tlsConfig,
+		IdleTimeout:  time.Minute,
+		ReadTimeout:  5 * time.Second,
 		WriteTimeout: 10 * time.Second,
 	}
 

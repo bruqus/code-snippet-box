@@ -46,7 +46,7 @@ func (app *application) showSnippet(w http.ResponseWriter, r *http.Request) {
 func (app *application) createSnippetForm(w http.ResponseWriter, r *http.Request) {
 	app.render(w, r, "create.page.tmpl", &templateData{
 		Form: forms.New(nil),
-	});
+	})
 }
 
 func (app *application) createSnippet(w http.ResponseWriter, r *http.Request) {
@@ -62,7 +62,7 @@ func (app *application) createSnippet(w http.ResponseWriter, r *http.Request) {
 	form.PermittedValues("expires", "365", "7", "1")
 
 	if !form.Valid() {
-		app.render(w, r, "create.page.tmpl", &templateData{ Form: form })
+		app.render(w, r, "create.page.tmpl", &templateData{Form: form})
 		return
 	}
 
@@ -78,7 +78,7 @@ func (app *application) createSnippet(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) signupUserForm(w http.ResponseWriter, r *http.Request) {
-	app.render(w, r, "signup.page.tmpl", &templateData{ Form: forms.New(nil) })
+	app.render(w, r, "signup.page.tmpl", &templateData{Form: forms.New(nil)})
 }
 
 func (app *application) signupUser(w http.ResponseWriter, r *http.Request) {
@@ -95,7 +95,7 @@ func (app *application) signupUser(w http.ResponseWriter, r *http.Request) {
 	form.MinLength("password", 6)
 
 	if !form.Valid() {
-		app.render(w, r, "signup.page.tmpl", &templateData{ Form: form })
+		app.render(w, r, "signup.page.tmpl", &templateData{Form: form})
 		return
 	}
 
@@ -103,7 +103,7 @@ func (app *application) signupUser(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		if errors.Is(err, models.ErrDuplicateEmail) {
 			form.Errors.Add("email", "Address is already in use")
-			app.render(w, r, "signup.page.tmpl", &templateData{ Form: form })
+			app.render(w, r, "signup.page.tmpl", &templateData{Form: form})
 		} else {
 			app.serverError(w, err)
 		}
@@ -115,7 +115,7 @@ func (app *application) signupUser(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) loginUserForm(w http.ResponseWriter, r *http.Request) {
-	app.render(w, r, "login.page.tmpl", &templateData{ Form: forms.New(nil)})
+	app.render(w, r, "login.page.tmpl", &templateData{Form: forms.New(nil)})
 }
 
 func (app *application) loginUser(w http.ResponseWriter, r *http.Request) {
@@ -130,7 +130,7 @@ func (app *application) loginUser(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		if errors.Is(err, models.ErrInvalidCredentials) {
 			form.Errors.Add("generic", "Email or Password is incorrect")
-			app.render(w, r, "login.page.tmpl", &templateData{ Form: form })
+			app.render(w, r, "login.page.tmpl", &templateData{Form: form})
 		} else {
 			app.serverError(w, err)
 		}
