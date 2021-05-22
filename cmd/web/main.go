@@ -15,6 +15,9 @@ import (
 	"github.com/golangcollege/sessions"
 )
 
+type contextKey string
+const contextKeyIsAuthenticated = contextKey("isAuthenticated")
+
 type Config struct {
 	Addr string
 	StaticDir string
