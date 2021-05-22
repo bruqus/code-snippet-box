@@ -1,0 +1,26 @@
+{{ template "base" .}}
+
+{{ define "title" }}Code-Snippet-Box | Login{{ end }}
+
+{{ define "main" }}
+  <form action="/user/login" method="POST" novalidate>
+  {{ with .Form }}
+    {{ with .Errors.Get "generic" }}
+      <div class="form__error">{{ . }}</div>
+    {{ end }}
+    <div class="form__group">
+      <label class="form__label" for="name">Email:</label>
+      <input type="text" name="email" id="email" class="form__input" value={{ .Get "email" }}>
+    </div>
+    <div class="form__group">
+      <label class="form__label" for="name">Password:</label>
+      <input type="password" name="password" id="password" class="form__input" value={{ .Get "password" }}>
+    </div>
+    <div class="form__group">
+      <button type="submit" class="form__button">Login</button>
+    </div>
+  {{ end }}
+  </form>
+{{ end }}
+
+
