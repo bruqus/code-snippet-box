@@ -4,6 +4,7 @@
 
 {{ define "main" }}
   <form class="form" action="/snippet/create" method="POST">
+  <input type="hidden" name="csrf_token" value={{ .CSRFToken }}>
   {{ with .Form }}
     <div class="form__group">
       <label class="form__label" for="title">Title:</label>
