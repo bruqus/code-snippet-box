@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bruqus/snippetbox/pkg/models/mysql"
 	"crypto/tls"
 	"database/sql"
 	"flag"
@@ -10,6 +9,9 @@ import (
 	"net/http"
 	"os"
 	"time"
+
+	"bruqus/snippetbox/pkg/models"
+	"bruqus/snippetbox/pkg/models/mysql"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/golangcollege/sessions"
@@ -27,11 +29,19 @@ type Config struct {
 }
 
 type application struct {
-	errorLog      *log.Logger
-	infoLog       *log.Logger
-	sessions      *sessions.Session
-	snippets      *mysql.SnippetModel
-	users         *mysql.UserModel
+	errorLog *log.Logger
+	infoLog  *log.Logger
+	sessions *sessions.Session
+	snippets interface {
+		Insert(string, string, string) (int, error)
+		Get(int) (*models.Snippet, error)
+		Latest() ([]*models.Snippet, error)
+	}
+	users interface {
+		Insert(string, string, string) error
+		Authenticate(string, string) (int, error)
+		Get(int) (*models.User, error)
+	}
 	templateCache map[string]*template.Template
 }
 
