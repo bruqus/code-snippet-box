@@ -8,7 +8,7 @@ import (
 var mockUser = &models.User{
 	ID:      1,
 	Name:    "Keks",
-	Email:   "test@example.ru",
+	Email:   "test@example.com",
 	Created: time.Now(),
 	Active:  true,
 }
